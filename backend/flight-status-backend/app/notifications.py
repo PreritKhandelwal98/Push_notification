@@ -1,16 +1,6 @@
-from kafka import KafkaProducer
-import json
-from app.config import Config
+from app.kafka_producer import KafkaProducerClient
+from app.config import KAFKA_TOPIC
 
-producer = KafkaProducer(
-    bootstrap_servers=Config.KAFKA_BROKER_URL,
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-def send_notification(flight_number, status):
-    notification = {
-        'flight_number': flight_number,
-        'status': status,
-        'type': 'status_update'
-    }
-    producer.send(Config.KAFKA_TOPIC, notification)
+def send_notification(message):
+    producer_client = KafkaProducerClient()
+    producer_client.produce_message(KAFKA_TOPIC, message)
