@@ -1,5 +1,7 @@
-from app.consumer_service import consumer_client, message_callback
-from app.config import KAFKA_TOPIC
+# models.py
+from app import mongo
 
-if __name__ == "__main__":
-    consumer_client.start_consuming(KAFKA_TOPIC, message_callback)
+def get_flight_status_collection():
+    if mongo is None:
+        raise ValueError("MongoDB has not been initialized. Ensure the app is created and initialized properly.")
+    return mongo.flight_status

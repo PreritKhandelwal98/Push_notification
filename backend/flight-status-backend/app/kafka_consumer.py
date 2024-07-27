@@ -1,3 +1,4 @@
+# kafka_consumer.py
 from confluent_kafka import Consumer, KafkaException
 from app.config import KAFKA_BOOTSTRAP_SERVERS, KAFKA_SASL_MECHANISMS, KAFKA_SECURITY_PROTOCOL, KAFKA_SASL_USERNAME, KAFKA_SASL_PASSWORD, KAFKA_CONSUMER_GROUP
 
@@ -14,8 +15,8 @@ class KafkaConsumerClient:
         }
         self.consumer = Consumer(self.config)
 
-    def start_consuming(self, topic, callback):
-        self.consumer.subscribe([topic])
+    def start_consuming(self, topics, callback):
+        self.consumer.subscribe(topics)
 
         try:
             while True:
@@ -28,7 +29,7 @@ class KafkaConsumerClient:
                     else:
                         print(f"Error: {msg.error()}")
                         break
-                callback(msg.value().decode('utf-8'))
+                callback(msg.value().decode('utf-8'), msg.topic())
         except KeyboardInterrupt:
             pass
         finally:

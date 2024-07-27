@@ -1,3 +1,5 @@
+# kafka_producer.py
+import json
 from confluent_kafka import Producer
 from app.config import KAFKA_BOOTSTRAP_SERVERS, KAFKA_SASL_MECHANISMS, KAFKA_SECURITY_PROTOCOL, KAFKA_SASL_USERNAME, KAFKA_SASL_PASSWORD
 
@@ -19,5 +21,5 @@ class KafkaProducerClient:
             else:
                 print(f"Message delivered to {msg.topic()} [{msg.partition()}]")
 
-        self.producer.produce(topic, value=message, callback=delivery_report)
+        self.producer.produce(topic, value=json.dumps(message), callback=delivery_report)
         self.producer.flush()

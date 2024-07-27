@@ -1,23 +1,38 @@
 from flask import Flask
 from flask_pymongo import PyMongo
-from dotenv import load_dotenv
-import os
+from flask_socketio import SocketIO
+from flask_cors import CORS
+from bson import ObjectId
+import json
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Initialize PyMongo globally
+# Initialize the extensions
 mongo = PyMongo()
+socketio = SocketIO(cors_allowed_origins="*")
 
 def create_app():
     app = Flask(__name__)
-    app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+    app.config.from_pyfile('config.py')
 
-    # Initialize the PyMongo instance with Flask app
+    # Enable CORS
+    CORS(app)
+
+    # Initialize the extensions with the app
     mongo.init_app(app)
-    
-    # Register blueprints
+    socketio.init_app(app)
+
+    # Register the blueprint
     from app.routes import main
     app.register_blueprint(main)
-    
+
+    # Set the custom JSON encoder
+    class JSONEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, ObjectId):
+                return str(obj)
+            return super(JSONEncoder, self).default(obj)
+    app.json_encoder = JSONEncoder
+
     return app
+
+def get_socketio():
+    return socketio
