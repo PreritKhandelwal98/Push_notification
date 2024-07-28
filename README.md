@@ -170,5 +170,6 @@ For any inquiries, please contact [prerit.web@gmail.com](mailto:prerit.web@gmail
 
 <img width="709" alt="Screenshot 2024-07-28 160205" src="https://github.com/user-attachments/assets/6f9d497c-610a-42ea-a6ec-b6b1a2ded3e1">
 
-![WhatsApp Image 2024-07-28 at 16 03 47_5049faf7](https://github.com/user-attachments/assets/a5ef733c-0adb-411f-ab9f-7b408f4019b0)
+![WhatsApp Image 2024-07-28 at 16 07 41_e5060706](https://github.com/user-attachments/assets/515b6dcc-bec0-4af9-a599-514b4fb4d95d)
+
 
