@@ -1,9 +1,14 @@
 import json
 from flask import Blueprint, request, jsonify
 from bson import ObjectId
-from app.models import get_flight_status_by_id
+from pymongo import MongoClient
+from app.config import MONGO_URI
 
 main = Blueprint('main', __name__)
+
+client = MongoClient(MONGO_URI)
+db = client['flight_status_db']
+collection = db['flights']
 
 @main.route('/api/flight-status', methods=['GET'])
 def flight_status():
@@ -11,9 +16,8 @@ def flight_status():
     if not flight_id:
         return jsonify({"error": "Flight ID is required"}), 400
 
-    flight_status = get_flight_status_by_id(flight_id)
+    flight_status = collection.find_one({'flight_id': flight_id})
     
-    # Convert ObjectId to string if present
     if flight_status and '_id' in flight_status and isinstance(flight_status['_id'], ObjectId):
         flight_status['_id'] = str(flight_status['_id'])
 

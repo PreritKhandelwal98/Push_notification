@@ -1,6 +1,8 @@
-# kafka_consumer.py
-from confluent_kafka import Consumer, KafkaException
-from app.config import KAFKA_BOOTSTRAP_SERVERS, KAFKA_SASL_MECHANISMS, KAFKA_SECURITY_PROTOCOL, KAFKA_SASL_USERNAME, KAFKA_SASL_PASSWORD, KAFKA_CONSUMER_GROUP
+from confluent_kafka import Consumer, KafkaError
+from .config import (
+    KAFKA_BOOTSTRAP_SERVERS, KAFKA_SASL_MECHANISMS, KAFKA_SECURITY_PROTOCOL,
+    KAFKA_SASL_USERNAME, KAFKA_SASL_PASSWORD, KAFKA_CONSUMER_GROUP
+)
 
 class KafkaConsumerClient:
     def __init__(self):
@@ -24,7 +26,7 @@ class KafkaConsumerClient:
                 if msg is None:
                     continue
                 if msg.error():
-                    if msg.error().code() == KafkaException._PARTITION_EOF:
+                    if msg.error().code() == KafkaError._PARTITION_EOF:
                         continue
                     else:
                         print(f"Error: {msg.error()}")
