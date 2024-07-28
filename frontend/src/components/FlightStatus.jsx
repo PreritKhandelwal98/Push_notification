@@ -5,7 +5,11 @@ import './FlightStatus.css';  // Import the CSS file for styles
 const SOCKET_SERVER_URL = 'http://localhost:5000';
 
 const FlightStatus = () => {
-  const [flight, setFlight] = useState(null);
+  const [flight, setFlight] = useState(() => {
+    // Retrieve flight status from localStorage when component mounts
+    const savedFlight = localStorage.getItem('flight');
+    return savedFlight ? JSON.parse(savedFlight) : null;
+  });
   const [notification, setNotification] = useState(null);
   const [animate, setAnimate] = useState(false);
 
@@ -18,12 +22,15 @@ const FlightStatus = () => {
         }
         const data = await response.json();
         setFlight(data);
+        localStorage.setItem('flight', JSON.stringify(data)); // Save flight status to localStorage
       } catch (error) {
         console.error("Failed to fetch flight status:", error);
       }
     };
 
-    fetchFlightStatus();
+    if (!flight) {
+      fetchFlightStatus();
+    }
 
     const socket = io(SOCKET_SERVER_URL);
 
@@ -34,10 +41,12 @@ const FlightStatus = () => {
     socket.on('status_update', (data) => {
       console.log('Status update received:', data);
       setNotification(data.message);
-      setFlight((prevFlight) => ({
-        ...prevFlight,
+      const updatedFlight = {
+        ...flight,
         status: data.status,
-      }));
+      };
+      setFlight(updatedFlight);
+      localStorage.setItem('flight', JSON.stringify(updatedFlight)); // Save updated flight status to localStorage
       setAnimate(true);
       setTimeout(() => setAnimate(false), 2000); // Animation lasts for 2 seconds
     });
@@ -45,7 +54,7 @@ const FlightStatus = () => {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [flight]);
 
   return (
     <div>

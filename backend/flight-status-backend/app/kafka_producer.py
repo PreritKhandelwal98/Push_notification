@@ -45,7 +45,7 @@ class KafkaProducerClient:
                         'delay_minutes': flight['delay_minutes'],
                         'gate': flight['gate'],
                         'type': 'status_update',
-                        'recipient': 'example@example.com',
+                        'recipient': 'prerit.web@gmail.com',
                         'message': f"Flight {flight['flight_id']} status changed to {flight['status']}."
                     }
                     self.produce_message(KAFKA_TOPIC, message)
