@@ -1,5 +1,24 @@
 # Real-Time Flight Status Notification System
 
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Notifications](#notifications)
+  - [Additional Tools and Libraries](#additional-tools-and-libraries)
+- [Setup Instructions](#setup-instructions)
+  - [Prerequisites](#prerequisites)
+  - [Frontend](#frontend-setup)
+  - [Backend](#backend-setup)
+- [Running the Application](#running-the-application)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Screenshots](#screenshots)
+
 ## Overview
 
 This project is a Real-Time Flight Status Notification System designed to provide passengers with up-to-date information on their flights, including delays, cancellations, and gate changes. The system sends notifications via SMS, email, and app notifications and integrates with airport systems to ensure accurate and timely information.
@@ -48,7 +67,7 @@ This project is a Real-Time Flight Status Notification System designed to provid
 - Gmail account for SMTP
 - Twilio account for SMS
 
-### Frontend
+### Frontend Setup
 
 1. Navigate to the `frontend` directory:
     ```bash
@@ -65,7 +84,7 @@ This project is a Real-Time Flight Status Notification System designed to provid
     npm start
     ```
 
-### Backend
+### Backend Setup
 
 1. Navigate to the `backend` directory:
     ```bash
@@ -120,7 +139,7 @@ This project is a Real-Time Flight Status Notification System designed to provid
     python status_monitor.py
     ```
 
-### Running the Application
+## Running the Application
 
 1. Start the frontend and backend services as described in the setup instructions.
 2. Open your browser and navigate to `http://localhost:3000` to view the flight status dashboard.
@@ -143,5 +162,13 @@ This project is licensed under the MIT License.
 
 For any inquiries, please contact [prerit.web@gmail.com](mailto:prerit.web@gmail.com).
 
+## Screenshots
 
+<img width="754" alt="Screenshot 2024-07-28 160109" src="https://github.com/user-attachments/assets/6f90fec9-8c84-49d7-a802-02e897cd254c">
+
+<img width="620" alt="Screenshot 2024-07-28 160137" src="https://github.com/user-attachments/assets/e926e458-7a7d-4913-b844-f4a2fab7fed9">
+
+<img width="709" alt="Screenshot 2024-07-28 160205" src="https://github.com/user-attachments/assets/6f9d497c-610a-42ea-a6ec-b6b1a2ded3e1">
+
+![WhatsApp Image 2024-07-28 at 16 03 47_5049faf7](https://github.com/user-attachments/assets/a5ef733c-0adb-411f-ab9f-7b408f4019b0)
 
