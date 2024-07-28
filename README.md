@@ -141,7 +141,7 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any inquiries, please contact [your_email@example.com](mailto:prerit.web@gmail.com).
+For any inquiries, please contact [prerit.web@gmail.com](mailto:prerit.web@gmail.com).
 
 
 
