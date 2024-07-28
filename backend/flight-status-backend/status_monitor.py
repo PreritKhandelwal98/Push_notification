@@ -33,7 +33,7 @@ def monitor_flight_status():
                 recipient2 = '+917976271478'
 
                 send_notification('email', notification_message, recipient1)
-                # send_notification('sms', notification_message, recipient2)
+                send_notification('sms', notification_message, recipient2)
 
                 previous_status = flight_status['status']
             
